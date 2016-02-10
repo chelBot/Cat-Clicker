@@ -1,4 +1,6 @@
 window.onload = function(){
+
+    /* ======= Model ======= */
     var model = {
         cats : [
             {
@@ -32,16 +34,11 @@ window.onload = function(){
         
     };
 
+    /* ======= Octopus ======= */
     var octopus = {
-        listViewRender : function(callbackObj){
-
-            for(var i in model.cats){
-                listView.render(model.cats[i]);
-            }
-            //catView.render(model.currentCat);
-        },
-        catViewRender: function(){
-            catView.render(model.currentCat);
+        init: function(){
+            listView.init();
+            catView.init();
         },
 
         setCurrentCat: function(cat){
@@ -49,56 +46,58 @@ window.onload = function(){
         },
         getCurrentCat: function(){
             return model.currentCat;
+        },
+        getAllCats: function(){
+            return model.cats;
         }
 
     };
 
+    /* ======= Views ======= */
     var listView = {
-        render : function(cat) {
-            var elem = document.createElement('LI');
-            var text = document.createTextNode(cat.name);
-            console.log(cat.name);
-            elem.style.fontFamily = "Courier";
-            elem.appendChild(text);
-            elem.addEventListener('click', this.eventListenerFct(cat));
-            document.getElementById("catNames").appendChild(elem);
+        init : function(){
+            this.catList = document.getElementById("catNames");
+            this.render();
+        },
+        render : function() {
+            var cats = octopus.getAllCats(), i, elem, cat;
+            octopus.setCurrentCat(cats[0]);
+            for(i in cats){
+                elem = document.createElement('li');
+                cat = cats[i];
+                elem.style.fontFamily = "Courier";
+                elem.textContent = cat.name;
+                elem.addEventListener('click', this.eventListenerFct(cat));
+                this.catList.appendChild(elem);
+            }
         },
         //is it really necessary to separate this out? 
         eventListenerFct : function(catCopy) {
             return function() {
                 octopus.setCurrentCat(catCopy);  
-                octopus.catViewRender();
+                catView.render();
                 
             };
         } 
     };
-
-   // var pic = document.getElementById('pic');
     var catView = {
-        render: function(cat){
-            document.getElementById("name").innerHTML = cat.name;
-            document.getElementById("timer").innerHTML = cat.clicker;
-            var element = document.getElementById("pic");
-            element.parentNode.removeChild(element);
-
-            var img = document.createElement("img");
-            img.src = cat.pic;
-            img.id = "pic";
-            document.getElementById("cat").appendChild(img);
-
-            pic.addEventListener('click', this.eventListenerFct(cat));
-
+        init: function(){
+            this.name = document.getElementById("name");
+            this.timer = document.getElementById("timer");
+            this.pic = document.getElementById('pic');
+            this.pic.addEventListener('click', this.eventListenerFct);
+            this.render();
         },
-        eventListenerFct : function(cat) {
-            return function(){
-                cat.clicker++;
-                document.getElementById("timer").innerHTML = cat.clicker;
-            }
-        }
+        eventListenerFct : function() {
+            octopus.getCurrentCat().clicker++;
+            catView.render();
+        },
+        render: function(){
+            var currentCat = octopus.getCurrentCat();
+            this.name.textContent = currentCat.name;
+            this.timer.textContent = currentCat.clicker;
+            this.pic.src = currentCat.pic;
+        },
     };
-    octopus.listViewRender();
- 
-    // console.log(window.clicker);
-    // console.log(model.currentCat.clicker);
-
+    octopus.init();
 };
