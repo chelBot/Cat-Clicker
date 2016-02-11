@@ -39,6 +39,7 @@ window.onload = function(){
         init: function(){
             listView.init();
             catView.init();
+            adminView.init();
         },
 
         setCurrentCat: function(cat){
@@ -60,6 +61,7 @@ window.onload = function(){
             this.render();
         },
         render : function() {
+            this.catList.textContent = '';
             var cats = octopus.getAllCats(), i, elem, cat;
             octopus.setCurrentCat(cats[0]);
             for(i in cats){
@@ -76,7 +78,6 @@ window.onload = function(){
             return function() {
                 octopus.setCurrentCat(catCopy);  
                 catView.render();
-                
             };
         } 
     };
@@ -99,5 +100,60 @@ window.onload = function(){
             this.pic.src = currentCat.pic;
         },
     };
+
+    var adminView = {
+        init: function(){
+            this.adminBtn = document.getElementById("admin");
+            this.cancelBtn = document.getElementById("cancel");
+            this.saveBtn = document.getElementById("save");
+            this.adminArea = document.getElementsByClassName("adminArea");
+            this.name = document.getElementById("name");
+
+            this.currentCat = octopus.getCurrentCat();
+
+            this.render();
+        },
+        render: function(){
+            this.adminBtn.addEventListener('click', this.adminEventListener); 
+            this.cancelBtn.addEventListener('click', this.cancelEventListener);
+            this.saveBtn.addEventListener('click', this.saveEventListener);
+            console.log(this.newName);
+
+        },
+         adminEventListener : function() {
+            for(var i = 0; i < adminView.adminArea.length; i++){
+                adminView.adminArea[i].style.display= 'flex';
+            }
+        },
+        cancelEventListener : function() {
+            for(var i = 0; i < adminView.adminArea.length; i++){
+                adminView.adminArea[i].style.display = 'none';
+            }
+
+        },
+        saveEventListener : function(){
+
+            var newName = document.getElementById("newName").value;
+            var url = document.getElementById("url").value;
+            var clicks = document.getElementById("clicks").value;
+
+            if(newName){
+                adminView.currentCat.name = newName;
+            }
+            if(url){
+                adminView.currentCat.pic = url;
+            }
+            if(clicks){
+                adminView.currentCat.clicker = clicks;
+            }
+            if(clicks || url || newName){
+
+                catView.render();
+                listView.render();
+            }
+
+        }
+    }
+
     octopus.init();
 };

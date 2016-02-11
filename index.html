@@ -9,17 +9,32 @@
 <body>
 	<div class="container">
 		<div id="list">
-			<ul id="catNames">
-				
-			</ul>
-
+			<ul id="catNames"></ul>
 		</div>
+
+		<div class="container">
+			<pre><button id="admin" type="button">Admin</button></pre>
+		</div>
+		<div class="adminArea" style="display: none;">
+		<form name="input" >
+			<label for='newName'>Name:</label><br> 
+			<input type='text' id='newName' name='input'><br><pre></pre>
+			<label for='url'>Url:</label><br>
+			<input type='text' id='url' name='input'><br><pre></pre>
+			<label for='clicks'>Clicks:</label><br>
+			<input type='text' id='clicks' name='input'><br>	
+		</form>
+		</div>
+		<div class ='adminArea' style = 'display:none;'>
+			<pre><button type='button' id='cancel'>Cancel</button> <button type='button' id='save'>Save</button> </pre>
+		</div>
+
 		<h1>Clicker:</h1>
-		<div id="timerSection">
+		<div class="container">
 			<p id="timer"></p>
 		</div>
 
-		<div id="cat">
+		<div class="container">
 			<p id="name"></p>
 			<img id="pic" src = "" alt="cat pic">
 		</div>
