@@ -5,28 +5,28 @@ window.onload = function(){
         cats : [
             {
                 "name" : "Julie",
-                "pic" : "http://tranquilmonkey.com/wp-content/uploads/2014/06/venus-two-faced-chimera-cat-1.jpg",
+                "pic" : "img/julie.jpg",
                 "clicker" : 0 
             },
             {
                 "name" : "Jimmy",
-                "pic" : "https://imgflip.com/s/meme/Cute-Cat.jpg",
+                "pic" : "img/jimmy.jpeg",
                 "clicker" : 0
             },
             {
                 "name": "Jinx",
-                "pic" : "http://www.maine-coon-cat-nation.com/image-files/maine-coon-classic-silver.jpg",
+                "pic" : "img/jinx.jpg",
                 "clicker" : 0
             },
             {
                 "name": "Orange",
-                "pic" : "https://s-media-cache-ak0.pinimg.com/736x/60/e1/e3/60e1e3467a52292d1a08a87649cc9aca.jpg",
+                "pic" : "img/orange.jpg",
                 "clicker": 0
 
             },
             {
                 "name": "Magic",
-                "pic" : "https://s-media-cache-ak0.pinimg.com/236x/c9/77/c1/c977c1ccfc34259fa3811c8839e0f6e3.jpg",
+                "pic" : "img/magic.jpg",
                 "clicker": 0
             }
         ],

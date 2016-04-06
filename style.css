@@ -1,49 +1,93 @@
 * {
-	background-color: gray;
+	font-family: Courier;
+	color: gray;
+}
+body, html {
+	background-image: url(img/halftone.png);
+	background-repeat: repeat;
+	font-family: Courier;
+	color: gray;
 }
 
-.container{
+.container {
 	display: flex;
 	flex-wrap: wrap;
-	font-family: Courier;
+	flex-direction: column;
+	width: 100%;
 	
 }
-.container div{
-	display: flex;
-	width: 100%;
-}
-/*why no work?*/
 .adminArea {
 	display: none;
 }
-#timer{
-	height: 50px;
-	width: 100px;
-	border: solid black 5px;
-	text-align: center;
-	margin: auto;
-}
-#name{
-	padding-left: 750px;
-	position: absolute;
-	
+#content{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	width: 100%;
 }
 
-img{
-	height: 400px;
-	width: 400px;
-	margin: auto;
+#cat{
+	width: 100%;
+	order: 1;
+	text-align: center;
+}
+#pic{
+	height: 35%;
+	width: 35%;
 	border-radius: 10%;
 	border: solid black 1px
-	position: relative;
+}
+button, img, li {
+	cursor: pointer;
+	cursor: hand;
+}
+@media screen and (max-width: 950px){
+  	#pic{
+	  	height: 60%;
+		width: 60%;
+	
+ 	}
+}
+@media screen and (max-width: 450px){
+  	#pic{
+	  	height: 65%;
+		width: 65%;
+	
+ 	}
+  	#name{
+		font-size: 15px;
+	}
+	h1{
+		width: 60%;
+		font-size: 15px;
+	}
+	#timer{
+		width: 40%;
+		font-size: 15px;
+		
+	}
+}
 
+#name{
+	text-align: center;
+	order: 2;
+	width: 100%;
 }
-h1{
+#clicker{
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	width: 100%;
 	margin:auto;
-	padding-left: 5px;
 }
-p{
-	font-size: 20px;
-	padding-top: 15px;
+
+h1{
+	text-align: right;
+	width: 55%;
 }
+#timer{
+	width: 45%;
+	text-align: left;
+}
+
 
