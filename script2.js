@@ -109,16 +109,13 @@ window.onload = function(){
             this.adminArea = document.getElementsByClassName("adminArea");
             this.name = document.getElementById("name");
 
-            this.currentCat = octopus.getCurrentCat();
-
             this.render();
         },
         render: function(){
             this.adminBtn.addEventListener('click', this.adminEventListener); 
             this.cancelBtn.addEventListener('click', this.cancelEventListener);
             this.saveBtn.addEventListener('click', this.saveEventListener);
-            console.log(this.newName);
-
+        
         },
          adminEventListener : function() {
             for(var i = 0; i < adminView.adminArea.length; i++){
@@ -129,31 +126,26 @@ window.onload = function(){
             for(var i = 0; i < adminView.adminArea.length; i++){
                 adminView.adminArea[i].style.display = 'none';
             }
-
         },
         saveEventListener : function(){
-
             var newName = document.getElementById("newName").value;
             var url = document.getElementById("url").value;
             var clicks = document.getElementById("clicks").value;
-
+            this.currentCat = octopus.getCurrentCat();
             if(newName){
-                adminView.currentCat.name = newName;
+                this.currentCat.name = newName;
             }
             if(url){
-                adminView.currentCat.pic = url;
+                this.currentCat.pic = url;
             }
             if(clicks){
-                adminView.currentCat.clicker = clicks;
+                this.currentCat.clicker = clicks;
             }
             if(clicks || url || newName){
-
                 catView.render();
                 listView.render();
-            }
-
+            } 
         }
     }
-
     octopus.init();
 };
